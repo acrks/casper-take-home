@@ -363,3 +363,12 @@ Approval received on 2026-10-09. Execute the slices in order and retain verifica
 - TypeScript and lint passed (same two existing warnings). Production build passed; a sandbox-induced Turbopack worker-port failure had persisted in its build cache, so that cache was moved aside and the approved rebuild succeeded. The separate running dev-server cache was preserved. Authored-file diff check passed; Prisma-generated trailing whitespace remains untouched.
 - Browser server logs revealed invitation expiry being evaluated during prerender despite authentication. Added explicit `connection()` before the preview, per installed Next.js documentation, and reverified the preview at request time.
 - Remaining approved scope is S4–S13: profiles/contact privacy, planning polls and decisions, activities/voting/participation, itinerary publication, history/archive, and release acceptance. No new dependencies or external integrations were added.
+
+### Shared database migration — approved and verified 2026-10-09
+
+- After trip creation failed on Vercel, read-only migration status confirmed the shared database was missing the S1–S3 migrations. The user confirmed Vercel uses that database and explicitly approved applying them.
+- Applied `20261009210000_event_membership_foundation`, `20261009220000_event_invitations`, and `20261009230000_member_details` using the supplied unpooled connection as a process-local `DIRECT_URL` override. No environment files or Vercel settings were modified.
+- Preflight found zero existing trips. Prisma reported all five repository migrations applied and the schema up to date.
+- Ran the actual `createOwnedTrip` persistence helper for a draft and confirmed event, committed both, and reloaded each with its active owner/admin membership. Both passed; removed only the synthetic records belonging to the verification run.
+- Initial verification from a temporary directory failed to resolve Bun's `server-only` mock; rerunning the same check from the repository succeeded. Temporary verification script was removed. No application code changed, so TypeScript/lint/build were not rerun for this database-only fix.
+- The Vercel browser flow was not independently retested; the user can retry the existing deployment against the updated schema. Configure Vercel `DIRECT_URL` with the unpooled value for future migrations.

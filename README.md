@@ -80,6 +80,8 @@ Clerk development users with `+clerk_test` email addresses are used for browser 
 
 S0–S3 are implemented and verified: authorized metadata editing, draft/confirmed events, membership-scoped access, revocable invitation links, and owner/admin/member management. Detailed evidence and remaining MVP work are in the implementation plan. Confirmed date/destination changes use the planned reopening workflow (S7), which has not shipped yet.
 
-New migrations have been applied only to the isolated `dev-evter-mvp` branch. The normal `.env` and shared database are unchanged. Use the test-database wrapper above to preview this checkpoint; running it against the old shared schema requires first reviewing and applying the migrations in that environment. The isolated branch expires on 2026-10-16.
+The S1–S3 migrations were first verified on the isolated `dev-evter-mvp` branch, then applied to the shared database with explicit user approval on 2026-10-09. Shared-database draft and confirmed trip creation both passed committed-write/readback checks; synthetic verification records were removed. Environment files were not changed. Use the test-database wrapper above for isolated tests; the isolated branch expires on 2026-10-16.
+
+For Prisma migrations, `DIRECT_URL` must contain Neon's unpooled connection string (the value supplied as `DATABASE_URL_UNPOOLED`), while runtime `DATABASE_URL` uses the pooled connection. The approved shared migration used a process-local direct-URL override; configure this mapping separately in Vercel and local environments.
 
 The migration preserves existing trips as confirmed, backfills each owner's active ADMIN membership, and leaves legacy time zones unset. Owners cannot leave or lose ownership. Invitation links expire after seven days and are stored only as hashes; links grant MEMBER access, and revoked links do not remove existing members. Restoration also grants MEMBER access; only an owner can promote them again.
