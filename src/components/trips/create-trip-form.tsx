@@ -49,7 +49,7 @@ export function CreateTripForm() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Create a bachelor party</CardTitle>
+        <CardTitle>Get the party started</CardTitle>
       </CardHeader>
 
       <CardContent>

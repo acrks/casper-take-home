@@ -1,10 +1,20 @@
 "use server";
 
+import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/src/lib/prisma";
 import { createTripSchema } from "./schemas";
 
 export async function createTrip(input: unknown) {
+  const { userId } = await auth();
+
+  if (!userId) {
+    return {
+      success: false as const,
+      message: "You must be signed in to create a trip.",
+    };
+  }
+
   const result = createTripSchema.safeParse(input);
 
   if (!result.success) {
@@ -20,6 +30,7 @@ export async function createTrip(input: unknown) {
     const trip = await prisma.trip.create({
       data: {
         ...details,
+        organizerId: userId,
         startDate: new Date(`${startDate}T12:00:00Z`),
         endDate: new Date(`${endDate}T12:00:00Z`),
       },
@@ -36,7 +47,7 @@ export async function createTrip(input: unknown) {
 
     return {
       success: false as const,
-      message: "Unable to create trip. Please try again.",
+      message: "Unable to create trip.",
     };
   }
 }

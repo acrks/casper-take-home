@@ -14,7 +14,7 @@ model Trip {
   startDate   DateTime
   endDate     DateTime
   description String?
-  organizerId String?
+  organizerId String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }

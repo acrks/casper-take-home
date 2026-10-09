@@ -14,3 +14,9 @@ export const createTripSchema = z
   });
 
 export type CreateTripInput = z.infer<typeof createTripSchema>;
+
+export const tripIdSchema = z.cuid("Invalid trip ID");
+
+export const updateTripSchema = createTripSchema.safeExtend({
+  tripId: tripIdSchema,
+});
