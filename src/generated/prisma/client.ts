@@ -46,3 +46,18 @@ export { Prisma }
  * 
  */
 export type Trip = Prisma.TripModel
+/**
+ * Model UserProfile
+ * 
+ */
+export type UserProfile = Prisma.UserProfileModel
+/**
+ * Model EventMember
+ * 
+ */
+export type EventMember = Prisma.EventMemberModel
+/**
+ * Model EventInvitation
+ * 
+ */
+export type EventInvitation = Prisma.EventInvitationModel

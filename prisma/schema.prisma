@@ -8,13 +8,85 @@ datasource db {
 }
 
 model Trip {
-  id          String   @id @default(cuid())
-  name        String
-  destination String
-  startDate   DateTime
-  endDate     DateTime
-  description String?
-  organizerId String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id             String            @id @default(cuid())
+  name           String
+  destination    String?
+  startDate      DateTime?
+  endDate        DateTime?
+  description    String?
+  organizerId    String
+  planningStatus PlanningStatus    @default(PLANNING)
+  timeZone       String?
+  version        Int               @default(0)
+  archivedAt     DateTime?
+  organizer      UserProfile       @relation(fields: [organizerId], references: [clerkUserId], onDelete: Restrict)
+  members        EventMember[]
+  invitations    EventInvitation[]
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+}
+
+enum PlanningStatus {
+  PLANNING
+  FINALIZED
+}
+
+enum EventRole {
+  ADMIN
+  MEMBER
+}
+
+enum MembershipStatus {
+  ACTIVE
+  LEFT
+  REMOVED
+}
+
+model UserProfile {
+  clerkUserId String        @id
+  displayName String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  ownedTrips  Trip[]
+  memberships EventMember[]
+}
+
+model EventMember {
+  id           String           @id @default(cuid())
+  tripId       String
+  userId       String
+  role         EventRole        @default(MEMBER)
+  status       MembershipStatus @default(ACTIVE)
+  version      Int              @default(0)
+  relationship String?
+  title        String?
+  revision     Int              @default(1)
+  joinedAt     DateTime         @default(now())
+  endedAt      DateTime?
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+  trip         Trip             @relation(fields: [tripId], references: [id], onDelete: Restrict)
+  user         UserProfile      @relation(fields: [userId], references: [clerkUserId], onDelete: Restrict)
+
+  invitations EventInvitation[]
+
+  @@unique([tripId, userId])
+  @@unique([tripId, id])
+  @@index([userId, status])
+  @@index([tripId, status, role])
+}
+
+model EventInvitation {
+  id        String      @id @default(cuid())
+  tripId    String
+  creatorId String
+  tokenHash String      @unique
+  expiresAt DateTime
+  revokedAt DateTime?
+  revision  Int         @default(0)
+  createdAt DateTime    @default(now())
+  trip      Trip        @relation(fields: [tripId], references: [id], onDelete: Restrict)
+  creator   EventMember @relation(fields: [tripId, creatorId], references: [tripId, id], onDelete: Restrict)
+
+  @@index([tripId, createdAt])
 }

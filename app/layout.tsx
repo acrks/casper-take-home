@@ -57,6 +57,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       >
         <body className="min-h-full flex flex-col">
           <header className="flex justify-end items-center p-4 gap-4 h-16">
+            <Suspense fallback={<span role="status">Loading account...</span>}>
             <Show when="signed-out">
               <SignInButton />
               <SignUpButton>
@@ -68,6 +69,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <Show when="signed-in">
               <UserButton />
             </Show>
+            </Suspense>
           </header>
           {children}
         </body>

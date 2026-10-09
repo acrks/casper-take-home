@@ -9,4 +9,7 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/Trip'
+export type * from './models/UserProfile'
+export type * from './models/EventMember'
+export type * from './models/EventInvitation'
 export type * from './commonInputTypes'

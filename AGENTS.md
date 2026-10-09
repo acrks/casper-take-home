@@ -109,6 +109,21 @@ Do not rewrite existing architecture without a clear technical reason and approv
 - Once authentication is implemented, enforce authorization on protected queries and mutations.
 - Do not deploy development-only unauthenticated mutations.
 
+## Authentication and Authorization
+
+Authentication is implemented using Clerk.
+
+- Use `auth()` from `@clerk/nextjs/server` to identify the authenticated user.
+- Never trust user IDs supplied by the client.
+- All trip queries must be scoped to the authenticated user's authorized trips.
+- All trip mutations must verify ownership or appropriate permissions.
+- Use Clerk's existing authentication components and middleware.
+- Do not introduce another authentication provider.
+- Never expose Clerk secret keys or database credentials to the client.
+- Do not rely solely on route protection for authorization.
+
+When implementing new features, ensure server-side authentication and authorization are enforced.
+
 ## AI Development Workflow
 
 When implementing a feature:

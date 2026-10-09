@@ -397,7 +397,10 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
-  Trip: 'Trip'
+  Trip: 'Trip',
+  UserProfile: 'UserProfile',
+  EventMember: 'EventMember',
+  EventInvitation: 'EventInvitation'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -413,7 +416,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "trip"
+    modelProps: "trip" | "userProfile" | "eventMember" | "eventInvitation"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -491,6 +494,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    UserProfile: {
+      payload: Prisma.$UserProfilePayload<ExtArgs>
+      fields: Prisma.UserProfileFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.UserProfileFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProfilePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.UserProfileFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProfilePayload>
+        }
+        findFirst: {
+          args: Prisma.UserProfileFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProfilePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.UserProfileFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProfilePayload>
+        }
+        findMany: {
+          args: Prisma.UserProfileFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProfilePayload>[]
+        }
+        create: {
+          args: Prisma.UserProfileCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProfilePayload>
+        }
+        createMany: {
+          args: Prisma.UserProfileCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.UserProfileCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProfilePayload>[]
+        }
+        delete: {
+          args: Prisma.UserProfileDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProfilePayload>
+        }
+        update: {
+          args: Prisma.UserProfileUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProfilePayload>
+        }
+        deleteMany: {
+          args: Prisma.UserProfileDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.UserProfileUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.UserProfileUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProfilePayload>[]
+        }
+        upsert: {
+          args: Prisma.UserProfileUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProfilePayload>
+        }
+        aggregate: {
+          args: Prisma.UserProfileAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUserProfile>
+        }
+        groupBy: {
+          args: Prisma.UserProfileGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserProfileGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.UserProfileCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserProfileCountAggregateOutputType> | number
+        }
+      }
+    }
+    EventMember: {
+      payload: Prisma.$EventMemberPayload<ExtArgs>
+      fields: Prisma.EventMemberFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EventMemberFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventMemberPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EventMemberFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventMemberPayload>
+        }
+        findFirst: {
+          args: Prisma.EventMemberFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventMemberPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EventMemberFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventMemberPayload>
+        }
+        findMany: {
+          args: Prisma.EventMemberFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventMemberPayload>[]
+        }
+        create: {
+          args: Prisma.EventMemberCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventMemberPayload>
+        }
+        createMany: {
+          args: Prisma.EventMemberCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EventMemberCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventMemberPayload>[]
+        }
+        delete: {
+          args: Prisma.EventMemberDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventMemberPayload>
+        }
+        update: {
+          args: Prisma.EventMemberUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventMemberPayload>
+        }
+        deleteMany: {
+          args: Prisma.EventMemberDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EventMemberUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.EventMemberUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventMemberPayload>[]
+        }
+        upsert: {
+          args: Prisma.EventMemberUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventMemberPayload>
+        }
+        aggregate: {
+          args: Prisma.EventMemberAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEventMember>
+        }
+        groupBy: {
+          args: Prisma.EventMemberGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EventMemberGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EventMemberCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EventMemberCountAggregateOutputType> | number
+        }
+      }
+    }
+    EventInvitation: {
+      payload: Prisma.$EventInvitationPayload<ExtArgs>
+      fields: Prisma.EventInvitationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EventInvitationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventInvitationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EventInvitationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventInvitationPayload>
+        }
+        findFirst: {
+          args: Prisma.EventInvitationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventInvitationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EventInvitationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventInvitationPayload>
+        }
+        findMany: {
+          args: Prisma.EventInvitationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventInvitationPayload>[]
+        }
+        create: {
+          args: Prisma.EventInvitationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventInvitationPayload>
+        }
+        createMany: {
+          args: Prisma.EventInvitationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EventInvitationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventInvitationPayload>[]
+        }
+        delete: {
+          args: Prisma.EventInvitationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventInvitationPayload>
+        }
+        update: {
+          args: Prisma.EventInvitationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventInvitationPayload>
+        }
+        deleteMany: {
+          args: Prisma.EventInvitationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EventInvitationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.EventInvitationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventInvitationPayload>[]
+        }
+        upsert: {
+          args: Prisma.EventInvitationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventInvitationPayload>
+        }
+        aggregate: {
+          args: Prisma.EventInvitationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEventInvitation>
+        }
+        groupBy: {
+          args: Prisma.EventInvitationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EventInvitationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EventInvitationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EventInvitationCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -538,11 +763,58 @@ export const TripScalarFieldEnum = {
   endDate: 'endDate',
   description: 'description',
   organizerId: 'organizerId',
+  planningStatus: 'planningStatus',
+  timeZone: 'timeZone',
+  version: 'version',
+  archivedAt: 'archivedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type TripScalarFieldEnum = (typeof TripScalarFieldEnum)[keyof typeof TripScalarFieldEnum]
+
+
+export const UserProfileScalarFieldEnum = {
+  clerkUserId: 'clerkUserId',
+  displayName: 'displayName',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UserProfileScalarFieldEnum = (typeof UserProfileScalarFieldEnum)[keyof typeof UserProfileScalarFieldEnum]
+
+
+export const EventMemberScalarFieldEnum = {
+  id: 'id',
+  tripId: 'tripId',
+  userId: 'userId',
+  role: 'role',
+  status: 'status',
+  version: 'version',
+  relationship: 'relationship',
+  title: 'title',
+  revision: 'revision',
+  joinedAt: 'joinedAt',
+  endedAt: 'endedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EventMemberScalarFieldEnum = (typeof EventMemberScalarFieldEnum)[keyof typeof EventMemberScalarFieldEnum]
+
+
+export const EventInvitationScalarFieldEnum = {
+  id: 'id',
+  tripId: 'tripId',
+  creatorId: 'creatorId',
+  tokenHash: 'tokenHash',
+  expiresAt: 'expiresAt',
+  revokedAt: 'revokedAt',
+  revision: 'revision',
+  createdAt: 'createdAt'
+} as const
+
+export type EventInvitationScalarFieldEnum = (typeof EventInvitationScalarFieldEnum)[keyof typeof EventInvitationScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -604,6 +876,20 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
+ * Reference to a field of type 'PlanningStatus'
+ */
+export type EnumPlanningStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PlanningStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'PlanningStatus[]'
+ */
+export type ListEnumPlanningStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PlanningStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'Int'
  */
 export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -614,6 +900,48 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'EventRole'
+ */
+export type EnumEventRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EventRole'>
+    
+
+
+/**
+ * Reference to a field of type 'EventRole[]'
+ */
+export type ListEnumEventRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EventRole[]'>
+    
+
+
+/**
+ * Reference to a field of type 'MembershipStatus'
+ */
+export type EnumMembershipStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MembershipStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'MembershipStatus[]'
+ */
+export type ListEnumMembershipStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MembershipStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 /**
@@ -768,6 +1096,9 @@ export interface PrismaClientOptionsWithAdapter extends PrismaClientBaseOptions 
 export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaClientOptionsWithAdapter
 export type GlobalOmitConfig = {
   trip?: Prisma.TripOmit
+  userProfile?: Prisma.UserProfileOmit
+  eventMember?: Prisma.EventMemberOmit
+  eventInvitation?: Prisma.EventInvitationOmit
 }
 
 /* Types for Logging */

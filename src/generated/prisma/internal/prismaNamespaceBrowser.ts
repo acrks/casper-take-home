@@ -51,7 +51,10 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  Trip: 'Trip'
+  Trip: 'Trip',
+  UserProfile: 'UserProfile',
+  EventMember: 'EventMember',
+  EventInvitation: 'EventInvitation'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -78,11 +81,58 @@ export const TripScalarFieldEnum = {
   endDate: 'endDate',
   description: 'description',
   organizerId: 'organizerId',
+  planningStatus: 'planningStatus',
+  timeZone: 'timeZone',
+  version: 'version',
+  archivedAt: 'archivedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type TripScalarFieldEnum = (typeof TripScalarFieldEnum)[keyof typeof TripScalarFieldEnum]
+
+
+export const UserProfileScalarFieldEnum = {
+  clerkUserId: 'clerkUserId',
+  displayName: 'displayName',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UserProfileScalarFieldEnum = (typeof UserProfileScalarFieldEnum)[keyof typeof UserProfileScalarFieldEnum]
+
+
+export const EventMemberScalarFieldEnum = {
+  id: 'id',
+  tripId: 'tripId',
+  userId: 'userId',
+  role: 'role',
+  status: 'status',
+  version: 'version',
+  relationship: 'relationship',
+  title: 'title',
+  revision: 'revision',
+  joinedAt: 'joinedAt',
+  endedAt: 'endedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EventMemberScalarFieldEnum = (typeof EventMemberScalarFieldEnum)[keyof typeof EventMemberScalarFieldEnum]
+
+
+export const EventInvitationScalarFieldEnum = {
+  id: 'id',
+  tripId: 'tripId',
+  creatorId: 'creatorId',
+  tokenHash: 'tokenHash',
+  expiresAt: 'expiresAt',
+  revokedAt: 'revokedAt',
+  revision: 'revision',
+  createdAt: 'createdAt'
+} as const
+
+export type EventInvitationScalarFieldEnum = (typeof EventInvitationScalarFieldEnum)[keyof typeof EventInvitationScalarFieldEnum]
 
 
 export const SortOrder = {
